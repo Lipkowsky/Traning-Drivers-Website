@@ -1,21 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;1,300;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Teko:wght@300;400;500;600;700&display=swap");
+$reddish: red;
+$redder: black;
+$cloud: #ecf0f1;
 
 body {
     margin: 0px;
     padding: 0px;
-    font-family: 'Roboto Condensed', sans-serif;
-    
+    font-family: "Teko", sans-serif;
+
     h1 {
         font-weight: 700;
         font-style: italic;
         margin-left: 20px;
     }
-    
+}
+
+.center {
+    text-align: center;
+    justify-content: center;
 }
 
 header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 4fr;
     grid-template-rows: 100px;
     background-color: red;
     .logo {
@@ -25,87 +32,208 @@ header {
         }
     }
 
-
     .menu {
         display: flex;
-        justify-content: flex-start;
-        align-items: center;
+        flex-direction: row;
         flex-wrap: wrap;
-        gap: 50px;
-        
+        align-items: center;
+        justify-content: start;
         button {
             cursor: pointer;
         }
     }
 
+    .flat-button {
+        position: relative;
+        width: 100px;
+        height: 50px;
+        background: $reddish;
+        margin: 0 10px;
+        overflow: hidden;
+        z-index: 1;
+        cursor: pointer;
+        transition: color 0.3s;
+        /* Typo */
+        line-height: 60px;
+        text-align: center;
+        color: #fff;
+        font-size: 1.4em;
+    }
+
+    .flat-button:after {
+        position: absolute;
+        top: 90%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $redder;
+        content: "";
+        z-index: -2;
+        transition: transform 0.3s;
+    }
+
+    .flat-button:hover::after {
+        transform: translateY(-80%);
+        transition: transform 0.3s;
+    }
 }
 
+.wrapper-info {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto;
 
-    .wrapper-info {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
-        grid-template-rows: auto;
-        
-        .column-one, .column-two {
-            margin-top: 1px;
-            border-bottom: .1em solid #111;
-            border-radius: 3px;
-        }
+    .column-one,
+    .column-two {
+        margin-top: 1px;
+        border-bottom: 0.1em solid #111;
+        border-radius: 3px;
+    }
 
-        .column-one {
-            border-right: .1em solid #111;
-        }
+    .column-one {
+        border-right: 0.1em solid #111;
+    }
 
-        .column-two > h1 {
-            text-align: center;
-        }
-        
-
-    
+    .column-two > h1 {
+        text-align: center;
+    }
 }
 
 .wrapper-content {
     display: grid;
     grid-template-columns: 3fr 2fr;
- 
 
     .column-one {
         padding: 20px;
-        border-right: .1em solid #111;
-     
-        
+        border-right: 0.1em solid #111;
 
         .latest {
             display: grid;
-            // TODO IF LONGER THAN 300px, GO TO NEXT LINE
             grid-template-columns: 1fr;
-            padding: 5px;
             gap: 10px;
 
             .single-news {
-                border: .1em solid #111;
+                border: 0.1em solid #111;
                 border-radius: 3px;
+                padding: 10px;
+
+                h2 {
+                    margin: 0px;
+                    padding: 0px;
+                }
+            }
+
+            .news-date,
+            .author {
+                text-align: right;
+            }
+
+            .topic::after {
+                content: "";
+                display: block;
+                margin: 0 auto;
+                width: 100%;
+                border-bottom: 5px solid red;
+                border-radius: 2px;
+                margin-bottom: 10px;
             }
         }
-     
     }
 
-    .column-two-wrapper{
+    .column-two-wrapper {
         display: grid;
-        grid-template-rows: 200px 1fr;
+        grid-template-rows: 300px 1fr;
 
         .driver-standings-info > h1 {
             text-align: center;
         }
+        .next-race {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            grid-template-rows: 1fr 1fr;
+            border-bottom: 0.1em solid #111;
+            border-radius: 3px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            .info {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .track-info {
+                display: grid;
+                grid-template-rows: repeat(1fr, 4);
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                grid-column: 2/3;
+                grid-row: 1/4;
+            }
+        }
+        .drivers-standings {
+            padding: 2px;
+        }
+        .driver-standings-info {
+            border-bottom: 0.1em solid #111;
+            margin: 2px;
+            border-radius: 3px;
+        }
+        .driver {
+            display: grid;
+            text-align: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            background-color: rgb(218, 219, 219);
+            padding: 0.4em;
+
+            .nameAndSurname {
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+
+                .name:after {
+                    content: "";
+                    display: block;
+                    margin: 0 auto;
+                    width: 50%;
+                    border-bottom: 1px solid red;
+                }
+            }
+        }
+        .driver > div:first-of-type,
+        .driver > div:nth-of-type(3) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .driver > div:first-of-type,
+        .driver > div:nth-of-type(2) {
+            border-right: 0.1em solid red;
+            border-radius: 3px;
+        }
+        .driver:nth-child(2n) {
+            background-color: rgba(188, 190, 190, 0.808);
+        }
+
+        .header {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            grid-template-columns: 1fr 1fr 1fr;
+            background-color: red;
+            padding: 0.4em;
+            color: white;
+        }
     }
-    
 }
 
 footer {
     text-align: center;
     justify-content: center;
-    background-color: red;
-    
+    background-color: rgb(49, 49, 49);
+
     h3 {
         font-weight: 500;
         font-style: italic;
@@ -115,7 +243,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 800px) {
     header {
         display: grid;
         grid-template-columns: 1fr;
@@ -124,4 +252,3 @@ footer {
         }
     }
 }
-
